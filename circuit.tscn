@@ -11,6 +11,7 @@ texture = ExtResource("1_450v8")
 polygon = PackedVector2Array(-736, -704, -1216, -224, -1216, 416, -992, 640, -800, 640, -576, 416, -576, 32, -224, -256, 288, -256, 576, 32, 576, 416, 800, 640, 992, 640, 1216, 416, 1216, -224, 992, -448, 736, -448, 480, -704)
 
 [node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="."]
+visible = false
 polygon = PackedVector2Array(-1472, -256, -1792, -256, -1792, 1280, 1792, 1280, 1792, -256, 1472, -256, 1472, 480, 1056, 896, 736, 896, 320, 480, 320, 192, 160, 0, -160, 0, -320, 160, -320, 480, -736, 896, -1056, 896, -1472, 480)
 
 [node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="."]
