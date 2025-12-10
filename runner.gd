@@ -15,17 +15,17 @@ func _physics_process(delta: float) -> void:
 		velocity = velocity.move_toward(desired_velocity, acceleration * delta)
 	else:
 		velocity = velocity.move_toward(Vector2.ZERO, deceleration * delta)
+
 	move_and_slide()
+	
 	if direction.length() > 0.0:
 		_runner_visual.angle = rotate_toward(_runner_visual.angle, direction.orthogonal().angle(), 8.0 * delta)
 		var _current_speed_percent := velocity.length() / max_speed
 		_runner_visual.animation_name = (
-		RunnerVisual.Animations.WALK
-		if _current_speed_percent < 0.8
-		else RunnerVisual.Animations.RUN
+			RunnerVisual.Animations.WALK
+			if _current_speed_percent < 0.8
+			else RunnerVisual.Animations.RUN
 		)
 	
-		_runner_visual.animation_name = RunnerVisual.Animations.IDLE
-		_runner_visual.animation_name = RunnerVisual.Animations.WALK
 	else:
 		_runner_visual.animation_name = RunnerVisual.Animations.IDLE
