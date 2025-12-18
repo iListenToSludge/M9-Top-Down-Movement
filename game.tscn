@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://3gicpphw4ki0"]
+[gd_scene load_steps=10 format=3 uid="uid://3gicpphw4ki0"]
 
 [ext_resource type="PackedScene" uid="uid://bw7oebjpdt5r8" path="res://runner.tscn" id="1_e2o6t"]
 [ext_resource type="Script" uid="uid://dacup40k4uuox" path="res://game.gd" id="1_ryrav"]
 [ext_resource type="PackedScene" uid="uid://c6m5ktrjrtgba" path="res://circuit.tscn" id="3_fc0e3"]
+[ext_resource type="PackedScene" uid="uid://b8pcidnvwyfnx" path="res://bouncer.tscn" id="3_vef74"]
 [ext_resource type="Texture2D" uid="uid://5vl7p0xb7nd8" path="res://assets/circuit_background.png" id="4_7jktm"]
 [ext_resource type="PackedScene" uid="uid://xl56q8amb611" path="res://assets/finish_line/finish_line.tscn" id="4_eow3j"]
 [ext_resource type="Theme" uid="uid://cdcyvsn1fp8wa" path="res://assets/countdown/count_down_theme.tres" id="7_j5wjh"]
@@ -17,6 +18,10 @@ script = ExtResource("1_ryrav")
 unique_name_in_owner = true
 z_index = 1
 position = Vector2(416, 240)
+
+[node name="Bouncer" parent="." instance=ExtResource("3_vef74")]
+unique_name_in_owner = true
+position = Vector2(264, -48)
 
 [node name="FinishLine" parent="." instance=ExtResource("4_eow3j")]
 unique_name_in_owner = true
@@ -34,6 +39,7 @@ position = Vector2(0, 32)
 
 [node name="CountDown" type="Label" parent="CanvasLayer"]
 unique_name_in_owner = true
+visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -53,3 +59,4 @@ script = ExtResource("8_vef74")
 metadata/_custom_type_script = "uid://57e8080cpukf"
 
 [node name="PauseScreen" parent="CanvasLayer" instance=ExtResource("8_j5wjh")]
+visible = false

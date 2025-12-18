@@ -7,7 +7,7 @@ extends CharacterBody2D
 @onready var dust: GPUParticles2D = %Dust
 
 func _physics_process(delta: float) -> void:
-	var direction := Input.get_vector("move_left", "move_right", "move_up", "move_down")
+	var direction := global_position.direction_to(get_global_player_position())
 	var has_input_direction := direction.length() > 0.0
 	if has_input_direction:
 		var desired_velocity := direction * max_speed
@@ -30,3 +30,7 @@ func _physics_process(delta: float) -> void:
 	else:
 		runner_visual.animation_name = RunnerVisual.Animations.IDLE
 		dust.emitting = false
+	var _distance := global_position.distance_to(get_global_player_position())
+
+func get_global_player_position() -> Vector2:
+	return get_tree().root.get_node("Game/Runner").global_position
