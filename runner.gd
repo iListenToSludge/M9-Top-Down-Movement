@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 @onready var _runner_visual: RunnerVisual = %RunnerVisualRed
+@onready var dust: GPUParticles2D = %Dust
 
 @export var max_speed := 600.0
 @export var acceleration := 1200.0
@@ -25,7 +26,10 @@ func _physics_process(delta: float) -> void:
 			RunnerVisual.Animations.WALK
 			if _current_speed_percent < 0.8
 			else RunnerVisual.Animations.RUN
+	
 		)
+		dust.emitting = true
 	
 	else:
 		_runner_visual.animation_name = RunnerVisual.Animations.IDLE
+		dust.emitting = false
