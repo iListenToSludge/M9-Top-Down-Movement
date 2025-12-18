@@ -2,59 +2,54 @@
 
 [ext_resource type="PackedScene" uid="uid://bw7oebjpdt5r8" path="res://runner.tscn" id="1_e2o6t"]
 [ext_resource type="Script" uid="uid://dacup40k4uuox" path="res://game.gd" id="1_ryrav"]
-[ext_resource type="PackedScene" uid="uid://bqyt66qognb6h" path="res://simple_obstacle.tscn" id="2_feb5d"]
 [ext_resource type="PackedScene" uid="uid://c6m5ktrjrtgba" path="res://circuit.tscn" id="3_fc0e3"]
 [ext_resource type="Texture2D" uid="uid://5vl7p0xb7nd8" path="res://assets/circuit_background.png" id="4_7jktm"]
 [ext_resource type="PackedScene" uid="uid://xl56q8amb611" path="res://assets/finish_line/finish_line.tscn" id="4_eow3j"]
 [ext_resource type="Theme" uid="uid://cdcyvsn1fp8wa" path="res://assets/countdown/count_down_theme.tres" id="7_j5wjh"]
+[ext_resource type="PackedScene" uid="uid://btdrqte4eafdf" path="res://pause_screen.tscn" id="8_j5wjh"]
 [ext_resource type="Script" uid="uid://57e8080cpukf" path="res://assets/countdown/count_down.gd" id="8_vef74"]
 
 [node name="Game" type="Node2D"]
 y_sort_enabled = true
-position = Vector2(0, -5)
 script = ExtResource("1_ryrav")
+
+[node name="Runner" parent="." instance=ExtResource("1_e2o6t")]
+unique_name_in_owner = true
+z_index = 1
+position = Vector2(416, 240)
+
+[node name="FinishLine" parent="." instance=ExtResource("4_eow3j")]
+unique_name_in_owner = true
+position = Vector2(456, 328)
 
 [node name="Circuit Background" type="Sprite2D" parent="."]
 z_index = -1
 position = Vector2(16, 0)
 texture = ExtResource("4_7jktm")
 
-[node name="Runner" parent="." instance=ExtResource("1_e2o6t")]
-z_index = 1
-position = Vector2(424, 285)
-
-[node name="FinishLine" parent="." instance=ExtResource("4_eow3j")]
-position = Vector2(456, 277)
-
-[node name="StaticBody2D" parent="." instance=ExtResource("2_feb5d")]
-z_index = 1
-position = Vector2(1346, 136)
-
-[node name="StaticBody2D2" parent="." instance=ExtResource("2_feb5d")]
-z_index = 1
-position = Vector2(-1359, 136)
-
-[node name="StaticBody2D3" parent="." instance=ExtResource("2_feb5d")]
-z_index = 1
-position = Vector2(-22, -192)
-
-[node name="StaticBody2D4" parent="." instance=ExtResource("2_feb5d")]
-z_index = 1
-position = Vector2(-5, -885)
-
 [node name="Circuit" parent="." instance=ExtResource("3_fc0e3")]
 position = Vector2(0, 32)
 
-[node name="Label" type="Label" parent="."]
-offset_right = 40.0
-offset_bottom = 219.0
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="CountDown" type="Label" parent="Label"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 219.0
+[node name="CountDown" type="Label" parent="CanvasLayer"]
+unique_name_in_owner = true
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -148.0
+offset_top = -109.5
+offset_right = 148.0
+offset_bottom = 109.5
+grow_horizontal = 2
+grow_vertical = 2
 theme = ExtResource("7_j5wjh")
+text = "test"
 horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("8_vef74")
 metadata/_custom_type_script = "uid://57e8080cpukf"
+
+[node name="PauseScreen" parent="CanvasLayer" instance=ExtResource("8_j5wjh")]

@@ -1,0 +1,106 @@
+[gd_scene load_steps=9 format=3 uid="uid://btdrqte4eafdf"]
+
+[ext_resource type="FontFile" uid="uid://vxbfcnef0pvq" path="res://assets/fonts/rubik/Rubik-Bold.ttf" id="1_rk3l4"]
+[ext_resource type="Script" uid="uid://5uj1dsm5ches" path="res://pause_screen.gd" id="2_rbgr5"]
+[ext_resource type="Shader" uid="uid://dp1hn66gsihpv" path="res://assets/blur.gdshader" id="2_un6tb"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rbgr5"]
+bg_color = Color(0.4891796, 0.69492304, 0.67434734, 0.8156863)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cfagd"]
+content_margin_left = 20.0
+content_margin_top = 10.0
+content_margin_right = 20.0
+content_margin_bottom = 10.0
+bg_color = Color(0.12004871, 0.18517444, 0.1673418, 0.62352943)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kt88e"]
+content_margin_left = 20.0
+content_margin_top = 20.0
+content_margin_right = 20.0
+content_margin_bottom = 20.0
+bg_color = Color(0, 0, 0, 0.5411765)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="Theme" id="Theme_odlcw"]
+default_font = ExtResource("1_rk3l4")
+default_font_size = 42
+Button/styles/hover = SubResource("StyleBoxFlat_rbgr5")
+Button/styles/normal = SubResource("StyleBoxFlat_cfagd")
+Label/font_sizes/font_size = 64
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_kt88e")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vef74"]
+shader = ExtResource("2_un6tb")
+shader_parameter/blur_amount = 3.4970001661075
+shader_parameter/tint = Color(0, 0, 0, 1)
+shader_parameter/tint_strength = 0.0810000038475
+shader_parameter/saturation = 0.25600001216
+
+[node name="PauseScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_odlcw")
+script = ExtResource("2_rbgr5")
+
+[node name="BlurColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_vef74")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 8.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="UIPanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -264.0
+offset_top = -204.0
+offset_right = 256.0
+offset_bottom = 220.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UIPanelContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UIPanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 2
+text = "PAUSE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="UIPanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UIPanelContainer/VBoxContainer/CenterContainer"]
+layout_mode = 2
+
+[node name="ResumeButton" type="Button" parent="UIPanelContainer/VBoxContainer/CenterContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Resume"
+
+[node name="QuitButton" type="Button" parent="UIPanelContainer/VBoxContainer/CenterContainer/VBoxContainer/ResumeButton"]
+layout_mode = 0
+offset_left = 44.0
+offset_top = 96.0
+offset_right = 172.0
+offset_bottom = 167.0
+text = "Quit"
